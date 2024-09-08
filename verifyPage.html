@@ -24,22 +24,22 @@
             const token = document.getElementById('tokenInput').value;
             const resultElement = document.getElementById('result');
 
-            // Get stored token and its count
-            const storedToken = localStorage.getItem('validToken');
-            let tokenCount = parseInt(localStorage.getItem('tokenCount'), 10);
+            // Get stored token and its count from sessionStorage
+            const storedToken = sessionStorage.getItem('validToken');
+            let tokenCount = parseInt(sessionStorage.getItem('tokenCount'), 10);
 
             if (token === storedToken && tokenCount > 0) {
                 resultElement.textContent = 'Token is valid!';
                 resultElement.className = 'valid';
                 tokenCount -= 1;
 
-                // Update the token count in localStorage
+                // Update the token count in sessionStorage
                 if (tokenCount > 0) {
-                    localStorage.setItem('tokenCount', tokenCount.toString());
+                    sessionStorage.setItem('tokenCount', tokenCount.toString());
                 } else {
                     // Optionally, clear the token if it has been used up
-                    localStorage.removeItem('validToken');
-                    localStorage.removeItem('tokenCount');
+                    sessionStorage.removeItem('validToken');
+                    sessionStorage.removeItem('tokenCount');
                 }
             } else if (token !== storedToken) {
                 resultElement.textContent = 'Invalid token! Token does not match.';
