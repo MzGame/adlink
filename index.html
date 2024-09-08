@@ -22,14 +22,20 @@
             return ('0000000000' + Math.floor(Math.random() * 10000000000)).slice(-10);
         }
 
-        // Display token and set its initial validity
-        function setupToken() {
-            const token = generateToken();
-            document.getElementById('token').textContent = token;
+        // Initialize or display the token
+        function initializeToken() {
+            let token = localStorage.getItem('validToken');
+            let tokenCount = localStorage.getItem('tokenCount');
 
-            // Store token and its initial validity count in localStorage
-            localStorage.setItem('validToken', token);
-            localStorage.setItem('tokenCount', '2');
+            if (!token) {
+                // Generate and store token if it does not exist
+                token = generateToken();
+                tokenCount = '2'; // Set initial usage count to 2
+                localStorage.setItem('validToken', token);
+                localStorage.setItem('tokenCount', tokenCount);
+            }
+
+            document.getElementById('token').textContent = token;
         }
 
         // Copy token to clipboard
@@ -40,7 +46,7 @@
                 .catch(err => console.error('Failed to copy token: ', err));
         }
 
-        setupToken();
+        initializeToken();
     </script>
 </body>
 </html>
