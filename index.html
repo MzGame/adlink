@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        #token { font-size: 1.5em; margin: 20px 0; }
+        button { padding: 10px 20px; font-size: 1em; }
+    </style>
+</head>
+<body>
+    <h1>Adlink Completed!</h1>
+    <p>Your unique token is:</p>
+    <div id="token"></div>
+    <button onclick="copyToken()">Copy Token</button>
+
+    <script>
+        // Function to generate a random 10-digit token
+        function generateToken() {
+            return ('0000000000' + Math.floor(Math.random() * 10000000000)).slice(-10);
+        }
+
+        // Display token and set its initial validity
+        function setupToken() {
+            const token = generateToken();
+            document.getElementById('token').textContent = token;
+
+            // Store token and its initial validity count in localStorage
+            localStorage.setItem('validToken', token);
+            localStorage.setItem('tokenCount', '2');
+        }
+
+        // Copy token to clipboard
+        function copyToken() {
+            const token = document.getElementById('token').textContent;
+            navigator.clipboard.writeText(token)
+                .then(() => alert('Token copied to clipboard'))
+                .catch(err => console.error('Failed to copy token: ', err));
+        }
+
+        setupToken();
+    </script>
+</body>
+</html>
