@@ -1,62 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async="async" data-cfasync="false" src="//pl24317934.cpmrevenuegate.com/6b4ab201bd8745e43a8e3eac14e4099c/invoke.js"></script>
-<div id="container-6b4ab201bd8745e43a8e3eac14e4099c"></div>
-    <script src="https://publisher.linkvertise.com/cdn/linkvertise.js"></script><script>linkvertise(1230823, {whitelist: [], blacklist: [""]});</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Token Page</title>
+    <title>Adlink Token Generator</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-        #token { font-size: 1.5em; margin: 20px 0; }
-        button { padding: 10px 20px; font-size: 1em; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Complete the Adlink to Get a Token</h1>
+        <button id="adlinkBtn">Go to Adlink</button>
 
-<script async="async" data-cfasync="false" src="//pl24317934.cpmrevenuegate.com/6b4ab201bd8745e43a8e3eac14e4099c/invoke.js"></script>
-<div id="container-6b4ab201bd8745e43a8e3eac14e4099c"></div>
-    
-    <h1>Adlink Completed!</h1>
-    <p>Your unique token is:</p>
-    <div id="token"></div>
-    <button onclick="copyToken()">Copy Token</button>
+        <div id="tokenDiv" class="hidden">
+            <p>Your Token: <span id="token"></span></p>
+            <button id="verifyBtn">Verify Token</button>
+            <p id="verificationMessage" class="hidden"></p>
+        </div>
+    </div>
 
-    <script async="async" data-cfasync="false" src="//pl24317934.cpmrevenuegate.com/6b4ab201bd8745e43a8e3eac14e4099c/invoke.js"></script>
-<div id="container-6b4ab201bd8745e43a8e3eac14e4099c"></div>
-
-    <script>
-        // Function to generate a random 10-digit token
-        function generateToken() {
-            return ('0000000000' + Math.floor(Math.random() * 10000000000)).slice(-10);
-        }
-
-        // Initialize or display the token
-        function initializeToken() {
-            let token = localStorage.getItem('validToken');
-            let tokenCount = localStorage.getItem('tokenCount');
-
-            if (!token) {
-                // Generate and store token if it does not exist
-                token = generateToken();
-                tokenCount = '2'; // Set initial usage count to 2
-                localStorage.setItem('validToken', token);
-                localStorage.setItem('tokenCount', tokenCount);
-            }
-
-            document.getElementById('token').textContent = token;
-        }
-
-        // Copy token to clipboard
-        function copyToken() {
-            const token = document.getElementById('token').textContent;
-            navigator.clipboard.writeText(token)
-                .then(() => alert('Token copied to clipboard'))
-                .catch(err => console.error('Failed to copy token: ', err));
-        }
-
-        initializeToken();
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
